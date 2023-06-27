@@ -73,7 +73,7 @@ vector<vector<uint64_t>> preparingTransactionsFormal(vector<int>& pertinentMsgIn
 }
 
 // Phase 1, obtaining PV's
-Ciphertext (vector<PVWCiphertext>& SICPVW, vector<Ciphertext> switchingKey, const RelinKeys& relin_keys,
+Ciphertext serverOperations1obtainPackedSIC(vector<PVWCiphertext>& SICPVW, vector<Ciphertext> switchingKey, const RelinKeys& relin_keys,
                             const GaloisKeys& gal_keys, const size_t& degree, const SEALContext& context, const PVWParam& params,
                             const int numOfTransactions, const int partialSize = 0) {
     chrono::high_resolution_clock::time_point time_start, time_end;
