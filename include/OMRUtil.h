@@ -73,9 +73,12 @@ vector<vector<uint64_t>> preparingTransactionsFormal(vector<int>& pertinentMsgIn
 }
 
 // Phase 1, obtaining PV's
-Ciphertext serverOperations1obtainPackedSIC(vector<PVWCiphertext>& SICPVW, vector<Ciphertext> switchingKey, const RelinKeys& relin_keys,
+Ciphertext (vector<PVWCiphertext>& SICPVW, vector<Ciphertext> switchingKey, const RelinKeys& relin_keys,
                             const GaloisKeys& gal_keys, const size_t& degree, const SEALContext& context, const PVWParam& params,
                             const int numOfTransactions, const int partialSize = 0) {
+    chrono::high_resolution_clock::time_point time_start, time_end;
+    time_start = chrono::high_resolution_clock::now();
+
     Evaluator evaluator(context);
     
     vector<Ciphertext> packedSIC(params.ell);
@@ -83,6 +86,9 @@ Ciphertext serverOperations1obtainPackedSIC(vector<PVWCiphertext>& SICPVW, vecto
 
     int rangeToCheck = 850; // range check is from [-rangeToCheck, rangeToCheck-1]
     newRangeCheckPVW(packedSIC, rangeToCheck, relin_keys, degree, context, params);
+
+    time_end = chrono::high_resolution_clock::now();
+    cout << "\n Phase1 time: " << chrono::duration_cast<chrono::microseconds>(time_end - time_start) << "\n";
 
     return packedSIC[0];
 }
