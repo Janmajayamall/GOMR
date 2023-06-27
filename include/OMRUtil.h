@@ -88,7 +88,9 @@ Ciphertext serverOperations1obtainPackedSIC(vector<PVWCiphertext>& SICPVW, vecto
     newRangeCheckPVW(packedSIC, rangeToCheck, relin_keys, degree, context, params);
 
     time_end = chrono::high_resolution_clock::now();
-    cout << "\n Phase1 time: " << chrono::duration_cast<chrono::microseconds>(time_end - time_start) << "\n";
+    uint64_t diff = chrono::duration_cast<chrono::microseconds>(time_end - time_start).count();
+    cout << "\n Phase1 time: " << diff << "\n";
+
 
     return packedSIC[0];
 }
